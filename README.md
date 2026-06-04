@@ -6,6 +6,8 @@ A small browser-only tool for previewing CSV data as a table.
 
 It runs locally, has no backend, and does not send pasted data anywhere. This means no data collection. Everything is on your computer.
 
+No Cloud, No pricing, Fully Open Source.
+
 ## Features
 
 - Paste CSV or open a local file.
