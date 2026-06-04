@@ -1,0 +1,17 @@
+{
+  "name": "csv-table-preview",
+  "version": "0.1.0",
+  "description": "A small browser-only CSV table previewer.",
+  "type": "module",
+  "scripts": {
+    "start": "python3 -m http.server 4173",
+    "test": "node tests/csv.test.mjs"
+  },
+  "keywords": [
+    "csv",
+    "table",
+    "preview",
+    "formatter"
+  ],
+  "license": "MIT"
+}
