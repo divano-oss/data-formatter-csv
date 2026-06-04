@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="A fast, private CSV table previewer that runs entirely in the browser."
+    />
+    <title>CSV Table Preview</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23087f8c'/%3E%3Cpath d='M14 18h36v28H14z' fill='%23fffdf8'/%3E%3Cpath d='M14 27h36M14 36h36M26 18v28M38 18v28' stroke='%23065d68' stroke-width='3'/%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <h1>CSV Table Preview</h1>
+        <p>Inspect CSV data locally before you open it anywhere else.</p>
+      </div>
+      <div class="topbar-actions">
+        <button class="button ghost" id="clearButton" type="button">Clear</button>
+        <button class="button primary" id="downloadButton" type="button">
+          Download CSV
+        </button>
+      </div>
+    </header>
+
+    <main class="app-shell">
+      <section class="panel input-panel" aria-labelledby="inputTitle">
+        <div class="panel-header">
+          <h2 id="inputTitle">Input</h2>
+          <label class="file-button">
+            <input id="fileInput" type="file" accept=".csv,text/csv,text/plain" />
+            Open file
+          </label>
+        </div>
+
+        <div class="controls">
+          <label>
+            Sample
+            <select id="sampleSelect">
+              <option value="">None</option>
+              <option value="sales">Sales report</option>
+              <option value="people">People list</option>
+              <option value="messy">Quoted notes</option>
+            </select>
+          </label>
+
+          <label>
+            Delimiter
+            <select id="delimiterSelect">
+              <option value="auto">Auto</option>
+              <option value=",">Comma</option>
+              <option value=";">Semicolon</option>
+              <option value="tab">Tab</option>
+              <option value="|">Pipe</option>
+            </select>
+          </label>
+
+          <label class="check-control">
+            <input id="headerToggle" type="checkbox" checked />
+            First row is header
+          </label>
+
+          <label class="check-control">
+            <input id="trimToggle" type="checkbox" checked />
+            Trim cells
+          </label>
+        </div>
+
+        <textarea
+          id="csvInput"
+          spellcheck="false"
+          placeholder="Paste CSV here"
+          aria-label="CSV input"
+        ></textarea>
+      </section>
+
+      <section class="panel preview-panel" aria-labelledby="previewTitle">
+        <div class="panel-header preview-header">
+          <div>
+            <h2 id="previewTitle">Preview</h2>
+            <p id="statusText" aria-live="polite">Waiting for CSV input.</p>
+          </div>
+          <div class="preview-actions">
+            <label class="search-label">
+              Search
+              <input id="searchInput" type="search" placeholder="Filter rows" />
+            </label>
+            <button class="button ghost" id="copyButton" type="button">
+              Copy table
+            </button>
+          </div>
+        </div>
+
+        <div class="stats" aria-label="CSV statistics">
+          <div>
+            <span id="rowCount">0</span>
+            <small>rows</small>
+          </div>
+          <div>
+            <span id="columnCount">0</span>
+            <small>columns</small>
+          </div>
+          <div>
+            <span id="emptyCount">0</span>
+            <small>empty cells</small>
+          </div>
+          <div>
+            <span id="delimiterName">Auto</span>
+            <small>delimiter</small>
+          </div>
+        </div>
+
+        <div class="table-wrap" id="tableWrap">
+          <div class="empty-state" id="emptyState">Paste CSV to see a table.</div>
+          <table id="previewTable" aria-label="CSV preview table"></table>
+        </div>
+
+        <ul class="issues" id="issuesList" aria-label="CSV issues"></ul>
+      </section>
+    </main>
+
+    <script type="module" src="./src/app.js"></script>
+  </body>
+</html>
