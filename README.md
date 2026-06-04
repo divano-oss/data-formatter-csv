@@ -1,5 +1,7 @@
 # CSV Table Preview
 
+This is the inital version. We are going to upgrade it soon.
+
 A small browser-only tool for previewing CSV data as a table.
 
 It runs locally, has no backend, and does not send pasted data anywhere.
